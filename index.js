@@ -478,6 +478,7 @@ var SpreadsheetWorksheet = function( spreadsheet, data ){
 var SpreadsheetRow = function( spreadsheet, data, xml ){
   var self = this;
   self['_xml'] = xml;
+  var index = 0;
   Object.keys(data).forEach(function(key) {
     var val = data[key];
     if(key.substring(0, 4) === "gsx:") {
@@ -488,6 +489,8 @@ var SpreadsheetRow = function( spreadsheet, data, xml ){
         self[key.substring(0, 3)] = val;
       } else {
         self[key.substring(4)] = val;
+        self[index] = val;
+        index ++;
       }
     } else {
       if (key == "id") {
